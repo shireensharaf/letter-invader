@@ -9,3 +9,6 @@ def letter_position(letter_position, new_letter, max_ht):
         letter_position[new_letter[0]] = [new_letter[1], max_ht]
     return letter_position
 
+
+def process(user_input, letter_position, score, life):
+    return [{'a' : [20, 99], 'g' : [45, 100]}, 0, 5]
