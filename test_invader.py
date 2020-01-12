@@ -14,3 +14,6 @@ def test_letter_and_update_position_insert_new_letter():
 
 def test_process_no_input():
     assert letter_invader.process('', {'a' : [20, 99], 'g' : [45, 100]}, 0, 5) == [{'a' : [20, 99], 'g' : [45, 100]}, 0, 5]
+
+def test_process_correct_input():
+    assert letter_invader.process('a', {'a' : [20, 99], 'g' : [45, 100]}, 0, 5) == [{'g' : [45, 100]}, 1, 5]

@@ -11,4 +11,8 @@ def letter_position(letter_position, new_letter, max_ht):
 
 
 def process(user_input, letter_position, score, life):
-    return [{'a' : [20, 99], 'g' : [45, 100]}, 0, 5]
+    "Update score & remaining life"
+    if(user_input in letter_position.keys()):
+        del letter_position[user_input]
+        score += 1
+    return [letter_position, score, life]
