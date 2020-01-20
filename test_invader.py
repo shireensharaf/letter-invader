@@ -1,5 +1,15 @@
 import letter_invader
 
+#create new letter position pair
+def test_letter_insert_new_letter():
+    assert letter_invader.create_letter({'a' : [20, 0]}, 'g', 45) == {'a' : [20, 0], 'g' : [45, 0]}
+
+def test_letter_new_letter_repeat():
+    assert letter_invader.create_letter({'a' : [20, 10]}, 'a', 45) == {'a' : [20, 10]}
+
+
+#move letter
+
 def test_letter_and_update_position():
     assert letter_invader.move_letter({'a' : [20, 0]}) == {'a' : [20, 1]}
 
@@ -7,12 +17,6 @@ def test_letter_and_update_position_multiple():
     assert letter_invader.move_letter({'a' : [20, 0], 'g': [45, 10]}) == {'a' : [20, 1], 'g' : [45, 11]}
 
 
-#create new letter position pair
-def test_letter_insert_new_letter():
-    assert letter_invader.create_letter({'a' : [20, 0]}, 'g', 45) == {'a' : [20, 0], 'g' : [45, 0]}
-
-def test_letter_new_letter_repeat():
-    assert letter_invader.create_letter({'a' : [20, 10]}, 'a', 45) == {'a' : [20, 10]}
 
 #time delay
 
@@ -25,8 +29,9 @@ def test_delay_reduce_delay():
 def test_delay_no_change():
     assert letter_invader.delay(11, .1) == .9
 
-def test_delay_second():
+def test_delay_second_state():
     assert letter_invader.delay(23, .1) == .8
+    
 def test_minimum_delay():
     assert letter_invader.delay(100, .1) == .1
 

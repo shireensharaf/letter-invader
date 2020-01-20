@@ -3,18 +3,18 @@ import random
 import time
 import curses
 
-def move_letter(letter_position):
-    "new letter and its position for viewport and update existing position"
-    for letter, position in letter_position.items():
-        position[1] += 1
-        letter_position[letter] = position
-    
-    return letter_position
 
 def create_letter(letter_position, new_letter, new_position):
     "create new letter with its position in viewport"
     if new_letter not in letter_position.keys():
         letter_position[new_letter] = [new_position, 0]
+    return letter_position
+
+def move_letter(letter_position):
+    "move letter from existing position"
+    for letter, position in letter_position.items():
+        position[1] += 1
+        letter_position[letter] = position
     return letter_position
 
 def process(user_input, letter_position, score, life, max_ht):
@@ -65,7 +65,7 @@ def main(window):
         window.addstr(0, 0,'Score : {}'.format(score) )
         window.addstr(0, width - 10,'Life : {}'.format(life) )
         window.refresh()
-        time.sleep(delay(score, 1))
+        time.sleep(delay(score, .1))
         window.clear()
     window.addstr(int(height/2), int((width/2)-4), 'Game Over')
     window.refresh()
