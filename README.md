@@ -1,7 +1,6 @@
 # Letter Invader
-Letter Invader is a two-dimensional game in which the letters will fall from top and the player press corresponding letter in keyboard. Correct letter earns point. As the player earns more points, letters movement speed up.
-
-When the letter reaches bottom, player loss one life. If the player has no life remaining, game ends.
+Letter Invader is a two-dimensional game in which the letters will fall from the top and the player press corresponding letter in the keyboard. Correct letter earns a point. As the player earns more points, letters' movement speeds up.
+When a letter reaches the bottom, the player loses one life. If the player has no life remaining, the game ends.
 
 ## How To Play
 If you have Python installed, you can run the program in Terminal.
