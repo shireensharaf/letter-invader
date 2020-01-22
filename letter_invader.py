@@ -4,7 +4,7 @@ import time
 import curses
 
 def create_letter(letter_position, new_letter, new_position):
-    "create new letter with its position in viewport"
+    "create new letter with its position in viewport and add to existing letters"
     if new_letter not in letter_position.keys():
         letter_position[new_letter] = [new_position, 0]
     return letter_position
@@ -50,8 +50,7 @@ def main(window):
     score = 0
     life = 5
     gameover = False
-    height = window.getmaxyx()[0]-1
-    width = window.getmaxyx()[1]-1
+    height, width = window.getmaxyx()[0]-1, window.getmaxyx()[1]-1
     curses.curs_set(0)
     window.nodelay(True)
     curses.init_pair(1, curses.COLOR_YELLOW, curses.COLOR_BLACK)
@@ -60,7 +59,6 @@ def main(window):
         letters_and_positions = move_letter(letters_and_positions)
         try:
             user_input = window.getkey()
-            curses.beep()
         except:
             user_input = ''
         letter_position, score, life, gameover = process(user_input, letters_and_positions, score, life,height)
