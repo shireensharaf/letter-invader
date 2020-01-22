@@ -3,7 +3,7 @@ Letter Invader is a two-dimensional game in which the letters will fall from top
 
 When the letter reaches bottom, player loss one life. If the player has no life remaining, game ends.
 
-##How To Play
+## How To Play
 If you have Pythoninstalled, you can run the program in Terminal.
 '''bash
 cd letter-invader
