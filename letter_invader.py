@@ -4,7 +4,7 @@ import time
 import curses
 
 def create_letter(letter_position, new_letter, new_position):
-    "create new letter with its position in viewport and add to existing letters"
+    "create new letter with its position in viewport and add to existing group of letters"
     if new_letter not in letter_position.keys():
         letter_position[new_letter] = [new_position, 0]
     return letter_position
