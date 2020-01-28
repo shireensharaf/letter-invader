@@ -7,9 +7,13 @@ If you have Python installed, you can run the program in terminal.
 
 
 ```
-cd letter-invader
 python letter_invader.py
 ```
 
-## Footnotes
-**Note:** If you are using Python 3, replace the command 'python' with 'python3'.
+There are three levels in this game: normal, medium and hard. Default is normal. You can choose the level as argument from the terminal by
+
+```
+python letter_invader.py --level=medium
+```
+
+

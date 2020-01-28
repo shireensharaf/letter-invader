@@ -21,19 +21,41 @@ def test_letter_and_update_position_multiple():
 #time delay
 
 def test_delay_first_state():
-    assert letter_invader.delay(2, 10) == 1
+    assert letter_invader.delay(2, 10, 'normal') == 1
 
 def test_delay_reduce_delay():
-    assert letter_invader.delay(10, 10) == .9
-
-def test_delay_no_change():
-    assert letter_invader.delay(11, 10) == .9
+    assert letter_invader.delay(10, 10,'normal') == .9
 
 def test_delay_second_state():
-    assert letter_invader.delay(23, 10) == .8
+    assert letter_invader.delay(23, 10, 'normal') == .8
     
 def test_minimum_delay():
-    assert letter_invader.delay(100, 10) == .1
+    assert letter_invader.delay(100, 10, 'normal') == .1
+
+
+def test_delay_first_state_medium():
+    assert letter_invader.delay(2, 10, 'medium') == .7
+
+def test_delay_reduce_delay_medium():
+    assert letter_invader.delay(10, 10,'medium') == .6
+
+def test_delay_second_state_medium():
+    assert letter_invader.delay(23, 10, 'medium') == .5
+    
+def test_minimum_delay_medium():
+    assert letter_invader.delay(100, 10, 'medium') == .1
+
+def test_delay_first_state_tough():
+    assert letter_invader.delay(2, 10, 'hard') == .4
+
+def test_delay_reduce_delay_tough():
+    assert letter_invader.delay(10, 10,'hard') == .3
+
+def test_delay_second_state_tough():
+    assert letter_invader.delay(23, 10, 'hard') == .2
+    
+def test_minimum_delay_tough():
+    assert letter_invader.delay(100, 10, 'hard') == .1
 
    
     

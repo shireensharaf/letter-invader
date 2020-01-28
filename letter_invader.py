@@ -2,6 +2,7 @@ import string
 import random
 import time
 import curses
+import argparse
 
 def create_letter(letter_position, new_letter, new_position):
     "create new letter with its position in viewport and add to existing group of letters"
@@ -36,14 +37,32 @@ def process(user_input, letter_position, score, life, max_ht):
     return (letter_position, score, life, False)
 
 
-def delay(score, m):
+def delay(score, m, level):
     "Reduce time delay with increase in score"
-    time_delay = 1
+    if level == 'normal':
+        time_delay = 1
+    elif level == 'medium':
+        time_delay = .7
+    elif level == 'hard':
+        time_delay = .4
     if score >= m:
-        time_delay = 1 - int(score/m) * .1
+        time_delay =round(time_delay - int(score/m) * .1, 1)
         if time_delay < .1:
             return .1
     return time_delay
+
+
+def game_level():
+    "Select level of game to be played from normal, medium and hard. Default is normal."
+    parser = argparse.ArgumentParser(description='Game level.', epilog="Default: normal")
+    parser.add_argument('--level', dest='level',
+                        default='normal',
+                        choices=['normal', 'medium', 'hard'],
+                        help="Choose level from 'normal', 'medium' or 'hard'")
+
+    args = parser.parse_args()
+    return args.level
+    
 
 def main(window):
     letters_and_positions = {}
@@ -67,12 +86,16 @@ def main(window):
         window.addstr(0, 0,'Score : {}'.format(score), curses.color_pair(1) | curses.A_BOLD )
         window.addstr(0, width - 10,'Life : {}'.format(life), curses.color_pair(1) | curses.A_BOLD )
         window.refresh()
-        time.sleep(delay(score, 10))
+        time.sleep(delay(score, 10, game_level()))
         window.clear()
-    window.addstr(int(height/2), int((width/2)-4), 'Game Over')
-    window.addstr(int(height/2)+2, int((width/2)-6), 'Your Score: {}'.format(score))
+    window.addstr(int(height/2)-2, int((width/2)-4), 'Game Over')
+    window.addstr(int(height/2), int((width/2)-6), 'Your Score: {}'.format(score))
+    window.addstr(int(height/2)+2, int((width/2)-6), 'Level: {}'.format(game_level()))
     window.refresh()
     time.sleep(3)
 
 if __name__ == '__main__':
+    if game_level() == ValueError:
+        print(game_level())
     curses.wrapper(main)
+    
